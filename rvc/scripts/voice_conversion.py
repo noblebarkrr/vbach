@@ -9,7 +9,7 @@ from datetime import datetime
 from pydub import AudioSegment
 from rvc.infer.infer import Config, load_hubert, get_vc, rvc_infer
 
-RVC_MODELS_DIR = os.path.join(os.getcwd(), "models")
+RVC_MODELS_DIR = os.path.join(os.getcwd(), "voice_models")
 HUBERT_MODEL_PATH = os.path.join(
     os.getcwd(), "rvc", "models", "embedders", "hubert_base.pt"
 )
