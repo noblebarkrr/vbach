@@ -22,6 +22,9 @@ parser.add_argument("-f0min", "--f0_min", type=int, default="50")
 parser.add_argument("-f0max", "--f0_max", type=int, default="1100")
 parser.add_argument("-f", "--format", type=str, default="mp3")
 parser.add_argument("-o", "--output_dir", type=str, default=None)
+parser.add_argument("-l", "--left", action='store_true')
+parser.add_argument("-pc", "--phantom_center", action='store_true')
+parser.add_argument("-r", "--right", action='store_true')
 args = parser.parse_args()
 
 model_name = args.model_name
@@ -34,7 +37,14 @@ if not os.path.exists(os.path.join(rvc_models_dir, model_name)):
 # Создание имени файла на основе шаблона
 input_filename = os.path.splitext(os.path.basename(args.song_input))[0]
 current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-output_filename = f"{model_name}_{input_filename}_{current_time}_{args.method}_{args.pitch}"
+if args.left:
+    output_filename = "left"
+elif args.right:
+    output_filename = "right"
+elif args.phantom_center:
+    output_filename = "mid"
+else:
+    output_filename = f"{model_name}_{input_filename}_{current_time}_{args.method}_{args.pitch}"
 
 # Определение пути для сохранения
 output_dir = args.output_dir if args.output_dir else os.getcwd()
