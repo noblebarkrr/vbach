@@ -22,7 +22,7 @@ parser.add_argument("-f0min", "--f0_min", type=int, default="50")
 parser.add_argument("-f0max", "--f0_max", type=int, default="1100")
 parser.add_argument("-f", "--format", type=str, default="mp3")
 parser.add_argument("-o", "--output_dir", type=str, default=None)
-parser.add_argument("-c", "--custom_name", type=str, required=True)
+parser.add_argument("-c", "--custom_name", type=str, default=None)
 args = parser.parse_args()
 
 model_name = args.model_name
