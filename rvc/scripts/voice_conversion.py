@@ -100,8 +100,9 @@ def voice_pipeline(
     f0_min=50,
     f0_max=1100,
     output_dir=None,
-    progress=gr.Progress(),
-):
+    output_filename=None,
+    progress=gr.Progress()
+    ):
     if not uploaded_file:
         raise ValueError(
             "Не удалось найти аудиофайл. "
@@ -117,8 +118,6 @@ def voice_pipeline(
     os.makedirs(output_dir, exist_ok=True)
     # Создаем имя файла на основе шаблона
     input_filename = os.path.splitext(os.path.basename(uploaded_file))[0]
-    current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_filename = f"{voice_model}_{input_filename}_{current_time}_{pitch}"
     output_path = os.path.join(output_dir, f"{output_filename}.{output_format}")
 
     if os.path.exists(output_path):
