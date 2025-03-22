@@ -36,10 +36,10 @@ if not os.path.exists(os.path.join(rvc_models_dir, model_name)):
 input_filename = os.path.splitext(os.path.basename(args.song_input))[0]
 current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-elif args.custom_name == None:
+if args.custom_name == None:
     output_filename = f"{model_name}_{input_filename}_{current_time}_{args.method}_{args.pitch}"
 else:
-    output_filename = args.custom_name
+    output_filename = f"{args.custom_name}"
     
 # Определение пути для сохранения
 output_dir = args.output_dir if args.output_dir else os.getcwd()
@@ -59,6 +59,7 @@ cover_path = voice_pipeline(
     f0_min=args.f0_min,
     f0_max=args.f0_max,
     output_dir=output_dir,
+    output_filename=output_filename
 )
 
 print("\033[1;92m\nГолос успешно заменен!\033[0m")
