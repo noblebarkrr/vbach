@@ -7,8 +7,8 @@ import gradio as gr
 from rvc.modules.download_source import download_file
 
 # Путь к директории, где будут храниться модели RVC
-rvc_models_dir = os.path.join(os.getcwd(), "models")
-
+rvc_models_dir = os.path.join(os.getcwd(), "voice_models")
+os.makedirs(rvc_models_dir, exist_ok=True)
 
 # Возвращает список папок, находящихся в директории моделей
 def get_folders(models_dir):
